@@ -15,5 +15,5 @@ The infrastucture is completely centered on the streaming pipeline.
 
 This project uses the Dhalion abstraction for self-regulating stream processing.
 
-![alt](https://github.com/chrischaplin/reactiveStream/blob/master/figs/dhalion_abstraction.png)
+![alt](https://github.com/chrischaplin/reactiveStream/blob/master/figs/dhalion_abstract.png)
 
