@@ -8,7 +8,7 @@ Kafka is a distributed ingestion tool used in a wide variety of big data platfor
 
 ## Project Pipeline
 
-![alt](https://github.com/chrischaplin/Ingestune/blob/master/figs/pipeline.jpg)
+![alt](https://github.com/chrischaplin/IngesTune/blob/master/figs/pipeline.png)
 
 
 
