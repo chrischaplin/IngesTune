@@ -1,6 +1,0 @@
-fieldNames = []
-subFieldNumVar = array([])
-subFieldVarName = []
-subFieldVarVal = []
-fileExt = 'config'
-template = 'template'
