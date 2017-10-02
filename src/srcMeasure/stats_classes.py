@@ -1,13 +1,13 @@
+#
+#
+# The stats class measures the number of records, latencies, and throughput for the producer
+# (It has been adapted from the java class in kafka/bin/kafka-producer-performance.sh)
+#
+#
+#
+
+
 import time
-import sys
-sys.path.append("../srcPostgres")
-
-from db_classes import pyToPostgres
-
-
-# Hard-coding some titles (belong in srcGridSearch)
-table_name = 'producer_results_table'
-config_name = '../../configs/db.config'
 
 
 class Stats(object):
@@ -47,28 +47,14 @@ class Stats(object):
         return cb
 
 
-    def print_total(self,rec):
+    def get_total_stats(self):
         elapsed = get_time_millis() - self.start
         recs_per_sec = 1000.0 * self.count / float(elapsed)
         mb_per_sec = 1000.0 * self.bytes / float(elapsed) / (1024.0 * 1024.0)
         percs = self.percentiles(
                 self.latencies, self.index, [0.5, 0.95, 0.99, 0.999])
 
-
-        # Add measurements to record
-        rec['throughput'] = mb_per_sec
-        rec['latency'] = percs[3]
-
-
-        # Open database
-        db={}
-	dbWrapper = pyToPostgres(db)
-	dbWrapper = dbWrapper.fromConfig(config_name)
-	dbWrapper.openConnection()
-
-        # Write record and close database
-        dbWrapper.insertIntoTable(rec,table_name)
-	dbWrapper.closeConnection()        
+        return (mb_per_sec,percs[3])
 
 
 

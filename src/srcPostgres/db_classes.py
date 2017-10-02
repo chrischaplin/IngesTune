@@ -110,7 +110,7 @@ class pyToPostgres:
 
         assert self.isOpen
 
-        cs = "DROP TABLE {0}".format(table_name)
+        cs = "DROP TABLE {0};".format(table_name)
 
         self._db_curs.execute(cs)
 
