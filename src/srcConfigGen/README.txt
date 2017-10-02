@@ -1,7 +1,7 @@
 Overall Notes:
 
-*Each configuration subdirectory contains two critical files: 'template' and 'master_input'
-*Currently, only the prodConf directory has a functional template and master_input example (the consumer, broker, and topic are future developments)
+*The prodconf subdirectory contains two critical files: 'template' and 'master_input'
+*(consumer, broker, and topic configs are future developments)
 
 
 
