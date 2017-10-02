@@ -29,5 +29,13 @@ On the webpage, two plots are rendered comparing the performance of the tuned pr
 
 [Ingestune Results](http://www.ingestune.com)
 
-The tuner was able to double throughput for any of the tested message sizes.
-As for latency, the tuner was only able to beat the default parameters for small and large messages.
+The tuner was able to double throughput for all of the tested message sizes.
+As for latency, the tuner was only able to beat the default parameters for large messages (assuming we are forced to send synchronously).
+
+
+## Usage
+
+There are three shell scripts that control the flow of code.
+1.  src/srcConfigGen/prodConf/makeConfig.sh -- generates the grid search configs
+2.  src/srcGridSearch/runGridSearch.sh -- runs over the grid search to produce throughput and latency for each config
+3.  src/srcPostgres/generateResults.sh -- writes out the results

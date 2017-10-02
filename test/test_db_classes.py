@@ -32,7 +32,7 @@ def run():
     dbWrapper.printTable('test_db_classes_table')
 
     dbWrapper.deleteTable('test_db_classes_table')
-    
+        
     dbWrapper.closeConnection()
 
 

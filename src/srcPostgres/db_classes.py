@@ -124,7 +124,7 @@ class pyToPostgres:
 
         assert self.isOpen
 
-        cs = "SELECT * from {0} where record_size = {1} ORDER By latency ASC;".format(table_name,record_size)
+        cs = "SELECT latency from {0} where record_size = {1} ORDER By latency ASC;".format(table_name,record_size)
         
         self._db_curs.execute(cs)        
 
@@ -132,8 +132,8 @@ class pyToPostgres:
 
         rows = self._db_curs.fetchall()
 
-        print rows[0]
-
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        
 
 
 
@@ -141,7 +141,7 @@ class pyToPostgres:
 
         assert self.isOpen
 
-        cs = "SELECT * from {0} where record_size = {1} ORDER By throughput DESC;".format(table_name,record_size)
+        cs = "SELECT throughput from {0} where record_size = {1} ORDER By throughput DESC;".format(table_name,record_size)
         
         self._db_curs.execute(cs)        
 
@@ -149,10 +149,122 @@ class pyToPostgres:
 
         rows = self._db_curs.fetchall()
 
-        print rows[0]
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
 
 
-            
+
+    def queryForLatencySync(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT latency from {0} where record_size = {1} AND acks = 1 ORDER By latency ASC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+
+
+
+
+    def queryForThroughputSync(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT throughput from {0} where record_size = {1} AND acks = 1 ORDER By throughput DESC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+
+        
+
+    def queryForLatencyDefault(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT latency from {0} where record_size = {1} AND batch_size = 16000 AND linger_ms = 0 AND max_in = 5 AND acks = 1 ORDER By latency ASC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+
+
+
+    def queryForThroughputDefault(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT throughput from {0} where record_size = {1} AND batch_size = 16000 AND linger_ms = 0 AND max_in = 5 AND acks = 1 ORDER By throughput DESC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        
+
+        
+    def queryForThOverLaDefault(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT throughput/latency from {0} where record_size = {1} AND batch_size = 16000 AND linger_ms = 0 AND max_in = 5 AND acks = 1 ORDER By throughput DESC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        
+
+
+    def queryForThOverLa(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT throughput/latency from {0} where record_size = {1} ORDER By throughput DESC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+
+
+        
+    def queryForThOverLaSync(self,table_name,record_size):
+
+        assert self.isOpen
+
+        cs = "SELECT throughput/latency from {0} where record_size = {1} AND acks = 1 ORDER By throughput DESC;".format(table_name,record_size)
+        
+        self._db_curs.execute(cs)        
+
+        self._db_conn.commit()
+
+        rows = self._db_curs.fetchall()
+
+        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        
+        
 
 
     def printTable(self,table_name):
