@@ -1,0 +1,147 @@
+<!-- index.html-->
+
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <div align="center">
+    <h1>IngesTune</h1>
+  </div>
+</div>
+
+<div style="height:100px; width:100%"></div>
+
+
+<div id="throughput" style="width: 100%; height: 600px; margin: 0 auto">
+
+<script>
+Highcharts.chart('throughput', {
+
+
+    title: {
+        text: 'Throughput vs Record Size',
+	style: {fontSize:'28px'}
+    },
+
+    yAxis: {
+        title: {
+            text: 'Throughput [MB/s]',
+	    style: {fontSize:'24px'}
+        },
+	labels: {
+		style: {fontSize:'24px'}
+	},
+        type: 'logarithmic',
+        minorTickInterval: 0.1
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+	itemStyle: {
+		fontSize:'24px'
+	}
+    },
+
+    xAxis: {
+	title: {
+            text: 'Record Size [B]',
+            style: {fontSize:'24px'}
+        },
+        categories: [10, 100, 1000, 10000],
+	labels: {
+		style: {fontSize:'24px'}
+	}
+
+    },
+
+
+    plotOptions: {
+        series: {
+            marker: {
+                radius: 8,
+            },
+	    lineWidth: 4
+        }
+    },
+
+    series: [{
+        name: 'Tuned',
+        data: [0.14, 1.44, 11.02, 28.426]
+    },
+             {
+        name: 'Default',
+        data: [0.072, 0.70, 4.83, 10.12]
+    }]
+}); 
+</script>
+
+
+<div style="height:100px; width:100%"></div>
+
+<div id="container2" style="width: 100%; height: 600px; margin: auto auto"></div>
+
+<script>
+Highcharts.chart('container2', { 
+
+
+    title: {
+        text: 'Latency vs Record Size',
+	style: {fontSize:'28px'}
+    },
+
+    yAxis: {
+	 title: {
+            text: 'Latency [mS]',
+            style: {fontSize:'24px'}
+        },
+        labels: {
+                style: {fontSize:'24px'}
+        },
+	type: 'logarithmic'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+	itemStyle: {
+                fontSize:'24px'
+        }
+
+    },
+
+    xAxis: {
+	title: {
+            text: 'Record Size [B]',
+            style: {fontSize:'24px'}
+        },
+        categories: [10, 100, 1000, 10000],
+        labels: {
+                style: {fontSize:'24px'}
+        }
+    },
+
+  plotOptions: {
+        series: {
+            marker: {
+                radius: 8,
+            },
+            lineWidth: 4
+        }
+    },
+
+
+
+    series: [{
+	name: 'Tuned',
+	data: [17, 29, 33.25, 2312]
+    },
+		{
+        name: 'Default',
+        data: [38, 29, 33.25, 3727]
+    }]
+});
+</script>
+
+
+{% endblock %}
