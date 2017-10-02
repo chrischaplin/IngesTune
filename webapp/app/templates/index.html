@@ -67,11 +67,11 @@ Highcharts.chart('throughput', {
 
     series: [{
         name: 'Tuned',
-        data: [0.14, 1.44, 11.02, 28.426]
+        data: [0.12, 1.17, 9.10, 35.46]
     },
              {
         name: 'Default',
-        data: [0.072, 0.70, 4.83, 10.12]
+        data: [0.059, 0.62, 5.15, 14.80]
     }]
 }); 
 </script>
@@ -131,15 +131,20 @@ Highcharts.chart('container2', {
     },
 
 
-
-    series: [{
-	name: 'Tuned',
-	data: [17, 29, 33.25, 2312]
+  series: [{
+        name: 'Sync Tuned',
+        data: [52, 70, 57, 784]
     },
-		{
+         {
         name: 'Default',
-        data: [38, 29, 33.25, 3727]
+        data: [52, 70, 57, 2326]
+    },
+        {
+        name: 'Async Tuned',
+        color: '#228B22',
+        data: [26, 34, 32, 106]
     }]
+    
 });
 </script>
 
