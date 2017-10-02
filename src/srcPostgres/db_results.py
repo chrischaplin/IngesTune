@@ -12,26 +12,20 @@ def run():
 
     dbWrapper.openConnection()
 
-    fh1 = open('latency_sync.txt', 'w')
-    fh2 = open('latency_best.txt', 'w')
-    fh3 = open('throughput.txt', 'w')
-    
+
+    fh1 = open('latency.txt', 'w')
+    fh2 = open('throughput.txt', 'w')    
 
     for x in range(1, 5):
 
-        lat_synccs = '{0},{1},{2}'.format(pow(10,x),dbWrapper.queryForLatencySync('prod_test_table',pow(10,x)),dbWrapper.queryForLatencyDefault('prod_test_table',pow(10,x)))
-        fh1.write(lat_synccs + '\n')
+        latcs = '{0},{1},{2}'.format(pow(10,x),dbWrapper.queryForLatency('prod_test_table',pow(10,x)),dbWrapper.queryForLatencyDefault('prod_test_table',pow(10,x)))
+        fh1.write(latcs + '\n')
 
-        lat_bestcs = '{0},{1},{2}'.format(pow(10,x),dbWrapper.queryForLatency('prod_test_table',pow(10,x)),dbWrapper.queryForLatencyDefault('prod_test_table',pow(10,x)))
-        fh2.write(lat_bestcs + '\n')
-
-        thrcs = '{0},{1},{2}'.format(pow(10,x),dbWrapper.queryForThroughputSync('prod_test_table',pow(10,x)),dbWrapper.queryForThroughputDefault('prod_test_table',pow(10,x)))
-        fh3.write(thrcs + '\n')
+        thrcs = '{0},{1},{2}'.format(pow(10,x),dbWrapper.queryForThroughput('prod_test_table',pow(10,x)),dbWrapper.queryForThroughputDefault('prod_test_table',pow(10,x)))
+        fh2.write(thrcs + '\n')
         
- 
     fh1.close() 
     fh2.close()
-    fh3.close()
     
         
     dbWrapper.closeConnection()

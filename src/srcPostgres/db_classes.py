@@ -1,5 +1,5 @@
 import psycopg2
-
+import psycopg2.extras
 
 
 
@@ -42,7 +42,7 @@ class pyToPostgres:
 
 	try:
 	    self._db_conn = psycopg2.connect(commandString)
-	    self._db_curs = self._db_conn.cursor()
+	    self._db_curs = self._db_conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 	    self.isOpen = True
             
 	except:
@@ -130,9 +130,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record['latency']
         
 
 
@@ -147,9 +147,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record['throughput']
 
 
 
@@ -163,9 +163,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record['latency']
 
 
 
@@ -180,9 +180,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record['throughput']
 
         
 
@@ -196,9 +196,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record['latency']
 
 
 
@@ -212,9 +212,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record['throughput']
         
 
         
@@ -228,9 +228,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record[0]
         
 
 
@@ -244,10 +244,10 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
-
+        return record[0]
+        
 
         
     def queryForThOverLaSync(self,table_name,record_size):
@@ -260,9 +260,9 @@ class pyToPostgres:
 
         self._db_conn.commit()
 
-        rows = self._db_curs.fetchall()
+        record = self._db_curs.fetchone()
 
-        return float(str(rows[0]).strip('(').strip(')').strip(','))
+        return record[0]
         
         
 

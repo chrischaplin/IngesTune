@@ -27,10 +27,17 @@ On the webpage, two plots are rendered comparing the performance of the tuned pr
 
 ## Results
 
+I built several test producers.
+Each producer repeatedly sent a constant length (10,100,1000,10000) byte array to Kafka.
+
 [Ingestune Results](http://www.ingestune.com)
 
+
 The tuner was able to double throughput for all of the tested message sizes.
-As for latency, the tuner was only able to beat the default parameters for large messages (assuming we are forced to send synchronously).
+![alt](https://github.com/chrischaplin/IngesTune/blob/master/figs/throughput.png)
+
+Similarly, the tuner was able to improve the latency by a factor of two for each message size.
+![alt](https://github.com/chrischaplin/IngesTune/blob/master/figs/latency.png)
 
 
 ## Usage
