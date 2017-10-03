@@ -1,7 +1,8 @@
 #
 #
 # The stats class measures the number of records, latencies, and throughput for the producer
-# (It has been adapted from the java class in kafka/bin/kafka-producer-performance.sh)
+# (It has been adapted from the java class in kafka/bin/kafka-producer-performance.sh
+# and the https://github.com/mrafayaleem/kafka-jython)
 #
 #
 #
