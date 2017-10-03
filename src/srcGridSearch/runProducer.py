@@ -3,12 +3,13 @@
 # This is an executable that measures throughput and latency
 # for an input set of producer configurations and message size
 #
-# Results are stored in a postgreSQL database (name is hardcoded in srcMeasure/stats_classes.py)
+# Results are stored in a postgreSQL database (name is hardcoded runGridSearch.sh)
+#
+# (code adapted from the kafka-producer-performance script)
 #
 #
 
 
-# Python code translated from java kafka-prducer-performance script
 import traceback
 import time
 import sys
@@ -25,7 +26,7 @@ from kafka import KafkaProducer
 
 
 
-class ProducerPerformance(object):
+class ProducerPerformance():
 
     @staticmethod
     def run():
