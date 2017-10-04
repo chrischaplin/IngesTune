@@ -40,8 +40,8 @@ The results are presented below.
 ![alt](https://github.com/chrischaplin/IngesTune/blob/master/figs/latency.png)
 
 The tuner was able to double throughput, compared to the default producer configuation, for all of the tested message sizes.
-Similarly, the tuner was able to improve the latency by a factor of two for each message size.
-Most of the latency performance gains, though not all, came from changing the acknowledgement configuration.
+As for latency, it was difficult to beat the default settings except for larger message sizes.
+Removing the acknowledgement requirement cut the latency by at least 2x over all message sizes.
 
 
 ## Usage
